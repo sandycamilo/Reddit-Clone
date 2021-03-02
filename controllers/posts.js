@@ -10,6 +10,10 @@ module.exports = (app) => {
         console.log(err.message);
       })
   })
+  // new post 
+  app.get('/posts/new', (req, res) => {
+    res.render('posts-new')
+  })
   // CREATE
   app.post('/posts/new', (req, res) => {
     console.log(req.body)
@@ -21,5 +25,15 @@ module.exports = (app) => {
       // REDIRECT TO THE ROOT
       return res.redirect(`/`);
     })
-  });
+  })
+  
+  app.get('/posts/:id', (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => {
+        res.render('posts-show', { post })
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  })
 };

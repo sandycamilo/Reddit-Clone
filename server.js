@@ -22,16 +22,6 @@ app.use(expressValidator());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
-// Routes
-// home 
-app.get('/', (req, res) => {
-  res.render('posts-index')
-})
-// new post 
-app.get('/posts/new', (req, res) => {
-  res.render('posts-new')
-})
-
 // new post 
 require('./controllers/posts')(app);
 // Set db -mongodb NoSQL database 
